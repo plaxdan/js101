@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Digital Workshop Center</title>
+  <meta name="description" content="Digital Workshop Center - JS 101">
+  <meta name="author" content="Daniel Walker">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <style>
+    .container {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    .symbol {
+      font-size: 2em;
+    }
+    #result {
+      vertical-align: sub;
+      font-family: monospace;
+      font-size: 3em;
+    }
+    li {
+      font-family: monospace;
+      font-size: 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <div class="container">
+        <main>
+          <h1>Calculator</h1>
+          <form class="form-inline">
+            <input id="first-input" class="form-control input-lg"/>
+            <span class="symbol">+</span>
+            <input id="second-input" class="form-control input-lg"/>
+            <span class="symbol">=</span>
+            <span id="result">0</span>
+            <br/><br/>
+            <a class="btn btn-danger btn-lg" id="reset">Reset</a>
+          </form>
+        </main>
+      </div>
+    </div>
+    <ul id="log" class="list-group"></ul>
+  </div>
+
+  <script src="js/index.js"></script>
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
