@@ -21,20 +21,9 @@ var resetButton = document.getElementById('reset');
 var log         = document.getElementById('log');
 
 /**
- * Attaches event listeners to the inputs and buttons.
- */
-function attachEventListeners() {
-  firstInput.addEventListener('input', onInput);
-  secondInput.addEventListener('input', onInput);
-  firstInput.addEventListener('keydown', onKeyDown);
-  secondInput.addEventListener('keydown', onKeyDown);
-  resetButton.addEventListener('click', reset);
-}
-
-/**
  * Handles when the user presses a key down.
  */
-function onKeyDown(keyboardEvent) {
+var onKeyDown = function(keyboardEvent) {
   if (keyboardEvent.keyIdentifier === 'Enter') {
     writeToLog(firstInput.value, secondInput.value, result.innerText);
     clearForm();
@@ -44,7 +33,7 @@ function onKeyDown(keyboardEvent) {
 /**
  * Handles when the user inputs some text.
  */
-function onInput() {
+var onInput = function() {
   var one = Number(firstInput.value) || 0;
   var two = Number(secondInput.value) || 0;
   var sum = one + two;
@@ -54,7 +43,7 @@ function onInput() {
 /**
  * Writes the current calculation to the log.
  */
-function writeToLog(first, second, result) {
+var writeToLog = function(first, second, result) {
   first = first || 0;
   second = second || 0;
   result = result || 0;
@@ -67,7 +56,7 @@ function writeToLog(first, second, result) {
 /**
  * Clears the log and resets the form.
  */
-function reset() {
+var reset = function() {
   clearLog()
   clearForm();
 }
@@ -75,7 +64,7 @@ function reset() {
 /**
  * Clears the log.
  */
-function clearLog() {
+var clearLog = function() {
   var child = log.childNodes[0];
   while (child) {
     log.removeChild(child);
@@ -86,7 +75,7 @@ function clearLog() {
 /**
  * Resets the form.
  */
-function clearForm() {
+var clearForm = function() {
   firstInput.value = '';
   secondInput.value = '';
   result.innerText = '0';
@@ -94,9 +83,20 @@ function clearForm() {
 }
 
 /**
+ * Attaches event listeners to the inputs and buttons.
+ */
+var attachEventListeners = function() {
+  firstInput.addEventListener('input', onInput);
+  secondInput.addEventListener('input', onInput);
+  firstInput.addEventListener('keydown', onKeyDown);
+  secondInput.addEventListener('keydown', onKeyDown);
+  resetButton.addEventListener('click', reset);
+}
+
+/**
  * Prepares the calculator for first use.
  */
-function initialize() {
+var initialize = function() {
   attachEventListeners();
   clearForm();
 }
