@@ -36,10 +36,11 @@ greeting + name;
 
 - Assignment operators: `= += -=`
 - Mathematical operators: `- + - \ * % ++ --`
-- Logical operators: `&& || !`
+- Logical operators: `&& ||`
 - Comparison operators: `== === != !== > < >= <=`
-- Unary `-`
+- Unary `- delete void typeof !`
 - Ternary `?`
+- Spread `...` (see Functions, and Arrays below)
 
 #### Assignment
 
@@ -47,25 +48,27 @@ Given `a = 3`...
 
 Operator | Desc | Example | Result
 - | - | - | -
-= | has value | `a = 7` | a is now 7
-+= | has current value plus |`a += 2`| a is now 5
--= | has current value minus |`a -= 2`| a is now 1
+`=` | has value | `a = 7` | a is now 7
+`+=` | has current value plus |`a += 2`| a is now 5
+`-=` | has current value minus |`a -= 2`| a is now 1
+`/=` | has current value minus |`a /= 2`| a is now 1.5
+`*=` | has current value minus |`a *= 2`| a is now 6
 
 #### Mathematical
 
 Where `a = 3`...
 
 Operator | Desc | Example | Result
-- | - | - | -
-+ | plus | `1 + 3 `| 4
-- | minus | `3 - 2 `| 1
-\ | divide | `12 / 3` | 4
-* | multiply | `3 * 9` | 27
-% | remainder | `12 % 5` | 2
-++ | plus plus | `a++` | a will be 4
- | | `++a` | a is now 4
--- | minus minus | `a--` | a will be 2
- | | `--a` | a is now 2
+`-` | - | - | -
+`+` | plus | `1 + 3 `| 4
+`-` | minus | `3 - 2 `| 1
+`\` | divide | `12 / 3` | 4
+`*` | multiply | `3 * 9` | 27
+`%` | remainder | `12 % 5` | 2
+`++` | plus plus | `a++` | a will be 4
+` |` | `++a` | a is now 4
+`--` | minus minus | `a--` | a will be 2
+` |` | `--a` | a is now 2
 
 > Note: discuss the order of `++`/`--`
 
@@ -87,18 +90,18 @@ Where `x = 5`...
 
 Operator | Desc | Example | Result
 - | - | - | -
-== |	equal to |	`x == 8` |	false
+`==` |	equal to |	`x == 8` |	false
 ||`x == 5`|	true
 || `x == "5"` |	true
-===	| equal value and equal type	|`x === 5` | true
+`===`	| equal value and equal type	|`x === 5` | true
 || `x === "5"` |	false
-!= |	not equal	| `x != 8` |	true
-!==	| not equal value or not equal type	| `x !== "5"` |	true
+`!=` |	not equal	| `x != 8` |	true
+`!==`	| not equal value or not equal type	| `x !== "5"` |	true
 || `x !== 5`	| false
-> |	greater than	| `x > 8`	| false
-<	| less than	| `x < 8` |	true
->=| greater than or equal to|	`x >= 8`|	false
-<=|	less than or equal to|	`x <= 8`|	true
+`>` |	greater than	| `x > 8`	| false
+`<`	| less than	| `x < 8` |	true
+`>=` | greater than or equal to|	`x >= 8`|	false
+`<=` |	less than or equal to|	`x <= 8`|	true
 
 #### Unary
 
@@ -128,7 +131,7 @@ a = false
 typeof a // "boolean"
 ```
 
-JavaScript types:
+JavaScript has Primitive types and Reference types.
 
 ```javascript
 // Primitives
@@ -138,8 +141,8 @@ Boolean
 Number
 String
 
-// Non-primitive
-Object
+// Reference
+Object // Object has many derivatives such as Function, Date, Array etc
 ```
 
 #### null and undefined
@@ -149,30 +152,49 @@ Object
 
 #### Boolean
 
-- `true`/`false`
-- as an expression: `1 < 2 // true`, `1 > 2 // false`
-- short circuiting operators
-  - `false || 'Camel' // 'Camel'`
-  - `true || 'Camel' // true`
+```javascript
+ // literal
+true; false;
+
+// expressions
+1 < 2 // true
+1 > 2 // false`
+
+// short circuiting operators
+false || 'Camel' // 'Camel'
+true || 'Camel' // true
+```
 
 Falsey:
-- `0 || 'Quasar' // 'Quasar'`
-- `null || 'Quasar' // 'Quasar'`
-- `undefined || 'Quasar' // 'Quasar'`
-- `NaN || 'Quasar' // 'Quasar'`
-- `"" || 'Quasar' // 'Quasar'`
+
+```javascript
+0 || 'Quasar' // 'Quasar'
+null || 'Quasar' // 'Quasar'
+undefined || 'Quasar' // 'Quasar'
+NaN || 'Quasar' // 'Quasar'
+"" || 'Quasar' // 'Quasar'
+```
 
 Truthy (all others):
-- `1 || 'Quasar' // 1`
-- `'Blanket' || 'Quasar' // 'Blanket'`
+
+```javascript
+1 || 'Quasar' // 1
+'Blanket' || 'Quasar' // 'Blanket'
+```
 
 #### Number
 
-Mainly used for arithmetic. `1`, `1.2`, `.3`, `2.9e8`
+Mainly used for arithmetic:
 
-- `NaN`
-- `isNan`
-- `Infinity`
+```javascript
+1
+1.2
+.3
+2.9e8
+NaN
+isNan
+Infinity
+```
 
 #### String
 
@@ -189,14 +211,17 @@ Mainly used for arithmetic. `1`, `1.2`, `.3`, `2.9e8`
 
 Essentially bags of key value pairs. We'll visit them in more detail later:
 
-```
+```javascript
 var pet = {
   name: 'James',
   age: 8,
-  species: 'Cat'
+  species: 'Cat',
+  predator: true
 };
 
 pet.name // 'James'
+pet.name = 'Archibald';
+pet.name // 'Archibald'
 ```
 
 ## Program Structure
@@ -205,9 +230,11 @@ pet.name // 'James'
 
 Anything that yields a value.
 
-- `1` // 1
-- `2 + 3` // 5
-- `(2 + 3) * 2` // 10
+```javascript
+1 // 1
+2 + 3 // 5
+(2 + 3) * 2 // 10
+```
 
 ### Statements
 
@@ -228,13 +255,36 @@ var isOver21 = age > 21; // undefined
 console.log("The age is over 21: " + isOver21); // undefined
 ```
 
-An expression can be a statement but a statement cannot be an expression.
+> An expression can be a statement but a statement cannot be an expression.
 
-### Variables and references
+### Variables
 
 - `var` keyword
-- point to value (primitives)
-- point to reference (objects)
+
+#### Primitive and Reference Types
+
+A primitive value may only have one variable attached to it (one string per balloon, where the ballon is the data).
+A reference value may have multiple variables attached to it (multiple strings per balloon, where the ballon is the data).
+
+```javascript
+// Primitives get one string per ballon
+var age = 10;
+var newAge = age; // a new 10 was created for newAge. newAge does not point to age's 10.
+newAge = 100;
+age;    // 10
+newAge; // 100
+
+// Reference types can have multiple strings per balloon.
+var pet = {name: "James", age: 8, species: 'Cat'};  // object literal is a Reference type.
+var anotherReferenceToPet = pet;
+
+// The object now has two variables pointing at it. Either can be used to manipulate it.
+pet.age = 10;
+anotherReferenceToPet.age; // 10
+
+anotherReferenceToPet.species = 'Reptile';
+pet.species; // 'Reptile'
+```
 
 ### Environment
 
@@ -275,8 +325,32 @@ if (age < 16) {
 }
 ```
 
-#### while / do
+#### switch statement
 
+```javascript
+var age = 22;
+if (age < 21) {
+  alert("Lemonade.");
+} else if (age == 21) {
+  alert('Jager!');
+} else {
+  alert('Whiskey.');
+}
+
+switch(age) {
+  case (age < 21):
+    console.log('milk');
+    break;
+  case (age === 21):
+    console.log('jager');
+    break;
+  default:
+    console.log('Whiskey');
+    break;
+}
+```
+
+#### while / do
 
 While loop runs zero or more times:
 
@@ -322,6 +396,22 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
+#### for in loops
+
+Used to loop through an object's own keys. Order is arbitrary.
+
+```javascript
+var pet = {
+  name: 'James',
+  age: 8,
+  species: 'Cat'
+};
+
+for (prop in pet) {
+  console.log(`${prop} has a value of: ${pet[prop]}`);
+}
+```
+
 #### Breaking out of a loop
 
 Works the same for all loops:
@@ -354,6 +444,13 @@ for (a= 0; a < 10; a++) {
   a++;
 }
 
+// for in
+for (prop in pet) {
+  if (prop === 'name') {
+    break;
+  }
+  console.log(`${prop} has a value of: ${pet[prop]}`);
+}
 ```
 
 #### detecting evens / odds
@@ -376,61 +473,112 @@ while (a <= 10) {
 
 ## Functions
 
+### defining and calling
+### arguments
+- single, multiple arguments
+- the arguments variable
+- passing or not passing
 
+#### spread operator
 
+```javascript
+var myFunction = function(x, y, z) { };
+var args = [0, 1, 2];
+myFunction(...args);
 
+// See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
+```
 
+### return
+- In absence of `return` function expressions evaluate to `undefined`.
+- What happens after `return`?
 
+### call stack
 
+### recursion
 
-# Intro
-JavaScript is case-sensitive
+### scope
 
-## Variables
-- Use Chrome console
-  - remember x = 1 from algebra?
-  - x is a variable
-  - var keyword;
-  - var x = 1; var y = 2; x + y;
+```javascript
+var landscape = function() {
+  var result = "";
+  var flat = function(size) {
+    for (var count = 0; count < size; count++)
+      result += "_";
+  };
+  var mountain = function(size) {
+    result += "/";
+    for (var count = 0; count < size; count++)
+      result += "'";
+    result += "\\";
+  };
 
+  flat(3);
+  mountain(4);
+  flat(6);
+  mountain(1);
+  flat(1);
+  return result;
+};
+```
 
-## Math Operators
+### functions as values
 
-- `+, -, /, *, --, ++, %`
-- precedence (using parentheses)
+```javascript
+var englishGreeter = function() { return "Why hello there, "; };
+var frenchGreeter = function() { return "Ahh... bonjour, "; };
 
-## Types
-- Use chrome console
-- var name = ‘Daniel’
-- alert(name);
-- var x = 30;
-- x + 10;
-- var x = “30”; // with quotes
-- x + 10;
-- JavaScript knows “string” vs number type
+var sayHello = function(name, greeter) {
+  console.log(greeter() + name);
+};
 
-> New Types! - `number`, and `string`
+var name = "Daniel";
+sayHello(name, englishGreeter); // "Why hello there, Daniel"
+sayHello(name, frenchGreeter);  // "Ahh... bonjour, Daniel"
+```
 
-## First Program
-- prompt()
-- var name = prompt(); alert(name);
-- var name = prompt(); var lastName = prompt(); alert(name + ‘ ‘ + lastName);
-- Assignment
+### function declarations and variable hoisting
 
-> Make a program that prompts for two numbers and then alerts their sum
+```javascript
+// Create a function value f
+var f = function(a) {
+  console.log(a + 2);
+};
 
-
-# If / else Comparison Operators
+// Declare g to be a function
+function g(a, b) {
+  return a * b * 3.5;
+}
 
-Let's switch from the console to Atom...
+// This will work
+sayHello();
+function sayHello() {
+  console.log('Hello!');
+}
 
+// It is the equivalent of:
+function sayHello() {   // function declarations are hoisted to the top
+  console.log('Hello!');
+}
+sayHello();
 
+// This will fail due to variable hoisting
+greetings();
+var greetings = function() {
+  console.log('Greetings!');
+};
 
-Negation: the ! symbol
+// It is the equivalent of:
+var greetings = undefined;  // variable declarations are also hoisted to the top
+greetings();
+greetings = function() {
+  console.log('Greetings!');
+};
+```
 
-> Make a program that uses prompts, and if/else
+## Data Structures: Objects and Arrays
 
-# Arrays
+### Arrays
 
 Array literals
 
@@ -457,26 +605,87 @@ var removed = myFish.splice(2, 0, 'DRUM');
 //=> ['angel', 'clown', 'DRUM', 'mandarin', 'surgeon'];
 ```
 
+Array constructor
+
 - forEach function(value, index) {}
-forEach is a new method and may not be defined in older browsers...which brings us to loops
-
-> New Type - `array`!
-
-# Loops
-
-- while
-- do
-- for (setup, compare, change) {} _(more complicated)_
-- Now let’s loop through an array!
-- Recommend the student saves  a for loop somewhere to copy/paste until they remember it
+forEach is a new method and may not be defined in older browsers.
 
 > Search the array - Log each item in an array but alert a specific one.
 
-================================================================================
-LESSON 3
-=================================================================================
+### Objects
+- literal
+- key (valid keys)
+- access with .syntax
+- delete properties
+- access with obj[syntax]
+- the 'this' keyword
+- constructors
 
-# Dates
+```javascript
+var cart = {
+  cart: function() { return this; },
+  items: [
+    {name: "Tarp Tent", price: 200},
+    {name: "DT Swiss Wheel", price: 2000}
+  ],
+  add: function(newName, newPrice) {
+    var newItem = {name: newName, price: newPrice};
+    this.items.push(newItem)
+  },
+  clear: function() {
+    this.items = [];
+  },
+  total: function() {
+    return this.items.reduce(function(prev, curr) { return prev + curr.price; }, 0);
+  }
+}
+```
+
+### Constructor functions
+
+Creating new objects from scratch each time is laborious. Better to use constructor functions.
+
+```javascript
+var Cart = function() {
+  var items = []; // private
+  this.add = function(newName, newPrice) {
+    var newItem = {name: newName, price: newPrice};
+    items.push(newItem);
+  };
+  this.clear = function() {
+    items = [];
+  };
+  this.total = function() {
+    return items.reduce(function(prev, curr) { return prev + curr.price; }, 0);
+  };
+};
+
+var myCart = new Cart();
+myCart.add({name:'Tarp Tent', price: 200});
+myCart.add({name:'DT Swiss Wheels', price: 3500});
+myCart.total(); // 350
+myCart.clear();
+myCart.total(); // 0
+```
+
+### The Math Object
+
+```javascript
+Math.random();
+Math.max(1, 2); // Try implementing this yourself.
+Math.min(1, 2); // Try implementing this yourself.
+Math.floor(1.999); // 1
+Math.ceil(1.0001); // 2
+Math.random(); // 0.9858470233157277
+Math.PI
+
+Math.round(1.3);  // 1
+Math.round(1.6);  // 2
+
+Math.round(Math.random()) ? 'heads' : 'tails'; // coin flip
+```
+
+### The Date Object
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 
@@ -490,7 +699,7 @@ alert("Today is " + days[d.getDay()]);
 
 - d.get* // the other accessor functions
 
-## Calculate your age
+Calculate your age
 
 ```javascript
 var dob = new Date(1977, 10, 10); // DOB
@@ -500,29 +709,3 @@ var millisSince = today - dob;
 // Work in milliseconds
 var ageInYears = millisSince * 1000 * 60 * 60 * 24 * 365;
 ```
-
-
-# Functions
-- First let’s move away from the console.
-- Put JS in a file….possibly use live reload
-- calling a function
-- calling multiple times
-- arguments
-- ignoring arguments
-- returning  value
-- what happens after return?
-- return nothing - undefined (new type)
-
-## Functions homework:
-  - make an addition function
-  - make a subtraction function
-  - make a multiplication function
-  - play around with functions. Once you’re comfortable with them we can get into the last lesson before we - start doing useful things on our webpage.
-
-  # Objects
-  - literal
-  - key (valid keys)
-  - access with .syntax
-  - access with obj[syntax]
-  - the 'this' keyword
-  - constructors
