@@ -22,6 +22,13 @@ var name = "Daniel"
 greeting + name;
 ```
 
+#### var vs let
+
+```javascript
+var // function scope
+let // block scope (new in ES6)
+```
+
 #### Variable names
 
 - case sensitive
@@ -382,39 +389,83 @@ console.log('Finished do');
 
 #### for loops
 
-Structure:
-
-for (<setup once>; <compare before>; <work after>) {
-  <block>
-}
-
-Example:
-
 ```javascript
-for (var i = 0; i < 10; i++) {
+
+/**
+ * for loop - specific order
+ */
+for (let i = 0; i < 10; i++) {
   console.log('The value of i is: ' + i); // prints 0..9
 }
-```
 
-#### for in loops
-
-Used to loop through an object's own keys. Order is arbitrary.
-
-```javascript
 var pet = {
   name: 'James',
   age: 8,
   species: 'Cat'
 };
 
-for (prop in pet) {
-  console.log(`${prop} has a value of: ${pet[prop]}`);
+/**
+ * for..in with objects - arbitrary order
+ * Iterates over an object's keys.
+ */
+for (let key in pet) {
+  console.log(`${key} has a value of: ${pet[key]}`);
 }
+
+/**
+ * for..of with objects - arbitrary order
+ * Iterates over an object's values.
+ */
+for (let val of pet) {
+  console.log(`Value is: ${val}`);
+}
+
+/**
+ * for..in and for..of with arrays - arbitrary order
+ */
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (let i in arr) {
+   console.log(i); // logs keys "0", "1", "2", "foo"
+}
+
+for (let i of arr) {
+   console.log(i); // logs values "3", "5", "7"
+}
+```
+
+> Note: `for--in` loops through keys, `for..of` loops through values.
+
+#### Array.prototype..forEach
+
+Functional looping. Order is guaranteed.
+
+```javascript
+let arr = [3,5,7];
+arr.foo = 'hello';
+
+// inline...
+arr.forEach(function(item) {
+  console.log(`The item is ${item}`);
+});
+
+// passing function variable...
+let printItem = function(item) {
+  console.log(`The item is ${item}`);
+};
+arr.forEach(printItem);
+
+// or with Object.keys()
+Object.keys(arr).forEach(function (element, index) {
+    console.log(arr[element]); // logs "3", "5", "7", "hello"
+    console.log(arr[index]);   // logs "3", "5", "7", undefined
+});
 ```
 
 #### Breaking out of a loop
 
-Works the same for all loops:
+Works the same for all loops except forEach:
 
 ```javascript
 var a = 0;
