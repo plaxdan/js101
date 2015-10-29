@@ -551,27 +551,25 @@ myFunction(...args);
 ### scope
 
 ```javascript
-var landscape = function() {
-  var result = "";
-  var flat = function(size) {
-    for (var count = 0; count < size; count++)
-      result += "_";
-  };
-  var mountain = function(size) {
-    result += "/";
-    for (var count = 0; count < size; count++)
-      result += "'";
-    result += "\\";
-  };
-
-  flat(3);
-  mountain(4);
-  flat(6);
-  mountain(1);
-  flat(1);
-  return result;
+var fullname = 'Jason Bourne';
+var obj = {
+   fullname: 'Nigel Mansel',
+   prop: {
+      fullname: 'Nigella Lawson',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
 };
+
+console.log(obj.prop.getFullname());
+
+var test = obj.prop.getFullname;
+
+console.log(test());
 ```
+
+Running the code above prints "Nigella Lawson", then "Jason Bourne". Explain the context of this.
 
 ### functions as values
 
