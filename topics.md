@@ -390,7 +390,6 @@ console.log('Finished do');
 #### for loops
 
 ```javascript
-<<<<<<< HEAD
 
 /**
  * for loop - specific order
@@ -427,44 +426,6 @@ for (let val of pet) {
 let arr = [3, 5, 7];
 arr.foo = "hello";
 
-=======
-
-/**
- * for loop - specific order
- */
-for (let i = 0; i < 10; i++) {
-  console.log('The value of i is: ' + i); // prints 0..9
-}
-
-var pet = {
-  name: 'James',
-  age: 8,
-  species: 'Cat'
-};
-
-/**
- * for..in with objects - arbitrary order
- * Iterates over an object's keys.
- */
-for (let key in pet) {
-  console.log(`${key} has a value of: ${pet[key]}`);
-}
-
-/**
- * for..of with objects - arbitrary order
- * Iterates over an object's values.
- */
-for (let val of pet) {
-  console.log(`Value is: ${val}`);
-}
-
-/**
- * for..in and for..of with arrays - arbitrary order
- */
-let arr = [3, 5, 7];
-arr.foo = "hello";
-
->>>>>>> master
 for (let i in arr) {
    console.log(i); // logs keys "0", "1", "2", "foo"
 }
