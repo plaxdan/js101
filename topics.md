@@ -390,6 +390,7 @@ console.log('Finished do');
 #### for loops
 
 ```javascript
+<<<<<<< HEAD
 
 /**
  * for loop - specific order
@@ -426,6 +427,44 @@ for (let val of pet) {
 let arr = [3, 5, 7];
 arr.foo = "hello";
 
+=======
+
+/**
+ * for loop - specific order
+ */
+for (let i = 0; i < 10; i++) {
+  console.log('The value of i is: ' + i); // prints 0..9
+}
+
+var pet = {
+  name: 'James',
+  age: 8,
+  species: 'Cat'
+};
+
+/**
+ * for..in with objects - arbitrary order
+ * Iterates over an object's keys.
+ */
+for (let key in pet) {
+  console.log(`${key} has a value of: ${pet[key]}`);
+}
+
+/**
+ * for..of with objects - arbitrary order
+ * Iterates over an object's values.
+ */
+for (let val of pet) {
+  console.log(`Value is: ${val}`);
+}
+
+/**
+ * for..in and for..of with arrays - arbitrary order
+ */
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+>>>>>>> master
 for (let i in arr) {
    console.log(i); // logs keys "0", "1", "2", "foo"
 }
@@ -551,27 +590,25 @@ myFunction(...args);
 ### scope
 
 ```javascript
-var landscape = function() {
-  var result = "";
-  var flat = function(size) {
-    for (var count = 0; count < size; count++)
-      result += "_";
-  };
-  var mountain = function(size) {
-    result += "/";
-    for (var count = 0; count < size; count++)
-      result += "'";
-    result += "\\";
-  };
-
-  flat(3);
-  mountain(4);
-  flat(6);
-  mountain(1);
-  flat(1);
-  return result;
+var fullname = 'Jason Bourne';
+var obj = {
+   fullname: 'Nigel Mansel',
+   prop: {
+      fullname: 'Nigella Lawson',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
 };
+
+console.log(obj.prop.getFullname());
+
+var test = obj.prop.getFullname;
+
+console.log(test());
 ```
+
+Running the code above prints "Nigella Lawson", then "Jason Bourne". Explain the context of this.
 
 ### functions as values
 
@@ -672,6 +709,58 @@ forEach is a new method and may not be defined in older browsers.
 - the 'this' keyword
 - constructors
 
+
+      ```javascript
+      var rabbit = {};
+      rabbit.speak = function(line) {
+        console.log("The rabbit says '" + line + "'");
+      };
+
+      rabbit.speak("I'm alive.");
+      ```
+
+Adding 'this' to the object
+
+      ```javascript
+      var speak = function(line) {
+        console.log(`The ${this.type} rabbit says '${line}'`);
+      }
+      var whiteRabbit = {type: "white", speak: speak};
+      var fatRabbit = {type: "fat", speak: speak};
+
+      whiteRabbit.speak("Oh my ears and whiskers, how late it's getting!");
+      fatRabbit.speak("I could sure use a carrot right now.");
+      ```
+
+Call and apply:
+
+      ```javascript
+      speak.apply(fatRabbit, ["Burp!"]);
+      // → The fat rabbit says 'Burp!'
+      speak.call({type: "old"}, "Oh my.");
+      // → The old rabbit says 'Oh my.'
+      ```
+
+#### Prototypes
+
+- Everything that's not a primitive is a type of object (Boolean, String, Number, Object, Function etc)
+- Built in Objects have a prototype property.
+- You can give your own objects a prototype (example on console).
+
+      ```javascript
+      var protoRabbit = {
+        speak: function(line) {
+          console.log("The " + this.type + " rabbit says '" +
+                      line + "'");
+        }
+      };
+      var killerRabbit = Object.create(protoRabbit);
+      killerRabbit.type = "killer";
+      killerRabbit.speak("SKREEEE!");
+      // → The killer rabbit says 'SKREEEE!'
+      ```
+
+#### Sample shopping cart
 ```javascript
 var cart = {
   cart: function() { return this; },
@@ -690,7 +779,9 @@ var cart = {
     return this.items.reduce(function(prev, curr) { return prev + curr.price; }, 0);
   }
 }
+
 ```
+
 
 ### Constructor functions
 
