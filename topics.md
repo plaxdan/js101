@@ -421,7 +421,7 @@ for (let val of pet) {
 }
 
 /**
- * for..in and for..of with arrays - arbitrary order
+ * for..in and for..of with arrays - NOTE: arbitrary order!!!
  */
 let arr = [3, 5, 7];
 arr.foo = "hello";

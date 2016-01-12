@@ -1,5 +1,101 @@
 
 
+// Expressions - are things that yield values and can nest other expressions
+4     // 4
+1 + 1 // 2
+1 > 3 // false
+
+var answer = (1 + 2) + (3 - 4) // 2
+// console.log("The answer is: ", answer);
+
+// Control FLOW
+
+// if
+// var age = 21;
+//
+// if (age < 21) {
+//   console.log("Milk");
+// } else if (age === 21) {
+//   console.log("Jager");
+// } else {
+//   console.log("Wine");
+// }
+
+// Switch statement - testing multiple cases
+// If a case matches - then do all the things.
+
+// While loop - run zero or more times
+
+while (false) {
+  console.log("While loop happened");
+  console.log("While loop happened");
+  console.log("While loop happened");
+  console.log("While loop happened");
+  console.log("While loop happened");
+  console.log("While loop happened");
+  break;
+}
+
+// Do loop - run one or more times ...always once
+// do {
+//   console.log("Do loop happened");
+// } while (false);
+
+
+// For loop - needlessly complex
+
+// for (SETUP ONCE; EVALUATE BEFORE WORK; INCREMENT AFTER WORK;) {
+//   DO WORK;
+// }
+
+// var cats = ["Bob", "Finn", "Izzy", "undefined", "Bowie"];
+// for (var num = 0; num < 10; num++) {
+//   if (cats[num]) {
+//     cats[num] += " is hungry";
+//   }
+// }
+// console.log("after the loop: ", cats);
+
+// var cats = ["Bob", "Finn", "Izzy", "undefined", "Bowie"];
+// var i = 0;
+// while (i < 10) {
+//   if (cats[i]) {
+//     cats[i] += " is tired";
+//   }
+//   i++;
+// }
+// console.log("after the loop: ", cats);
+
+
+
+// Objects
+var cat = {
+  name: "Finn",
+  species: "Tiger"
+};
+
+// What is an array?
+
+var numbers = [1, 2, 3, 4];
+var cats = ["Bob", "Finn", "Izzy"];
+
+var mixed = [1, false, "Banana", ['a', 'b', 'c']];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // var printName, somThingElse, yetAnother;
 //
 // // function printName(name) {
