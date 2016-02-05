@@ -25,8 +25,9 @@ greeting + name;
 #### var vs let
 
 ```javascript
-var // function scope
-let // block scope (new in ES6)
+a = 'apple'; // global scope
+var b = 'banana'; // function scope
+let c = 'carrot'; // block scope (new in ES6)
 ```
 
 #### Variable names
@@ -435,7 +436,7 @@ for (let i of arr) {
 }
 ```
 
-> Note: `for--in` loops through keys, `for..of` loops through values.
+> Note: `for..in` loops through keys, `for..of` loops through values.
 
 #### Array.prototype..forEach
 
@@ -589,12 +590,12 @@ sayHello(name, frenchGreeter);  // "Ahh... bonjour, Daniel"
 ### function declarations and variable hoisting
 
 ```javascript
-// Create a function value f
+// function declaration
 var f = function(a) {
   console.log(a + 2);
 };
 
-// Declare g to be a function
+// function expression
 function g(a, b) {
   return a * b * 3.5;
 }
