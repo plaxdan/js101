@@ -23,7 +23,7 @@ var log         = document.getElementById('log');
  */
 var onKeyDown = function(keyboardEvent) {
   if (keyboardEvent.keyIdentifier === 'Enter') {
-    writeToLog(firstInput.value, secondInput.value, result.innerText);
+    writeToLog(firstInput.valueAsNumber, secondInput.valueAsNumber, result.innerText);
     clearForm();
   }
 }
@@ -32,8 +32,8 @@ var onKeyDown = function(keyboardEvent) {
  * Handles when the user inputs some text.
  */
 var onInput = function() {
-  var one = Number(firstInput.value) || 0;
-  var two = Number(secondInput.value) || 0;
+  var one = firstInput.valueAsNumber || 0;
+  var two = secondInput.valueAsNumber || 0;
   var sum = one + two;
   result.innerText = sum;
 }
@@ -63,11 +63,7 @@ var reset = function() {
  * Clears the log.
  */
 var clearLog = function() {
-  var child = log.childNodes[0];
-  while (child) {
-    log.removeChild(child);
-    child = log.childNodes[0];
-  }
+  log.innerText = '';
 }
 
 /**
